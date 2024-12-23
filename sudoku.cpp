@@ -15,8 +15,8 @@ bool editable[4][4];
 int cur_r = 0, cur_c = 0;
 
 void check_horizontal()
-{
-    /* TODO: Check if a horizontal line has conflict number, or is finished. */
+{	
+	/* TODO: Check if a horizontal line has conflict number, or is finished. */
 }
 
 void check_vertical()
@@ -29,8 +29,11 @@ void check_block()
     /* TODO: Check if a block has conflict number, or is finished. */
 }
 
-void fill_number()
-{
+void fill_number(int c)
+{	
+	
+	board[cur_r][cur_c]=c-48;
+	return ;
     /* TODO: Fill a number in to the cell the cursor is now pointing to.
              After fill in the number, check the horizontal line, the
              vertical line and the block the cell is in.
@@ -183,7 +186,7 @@ int main()
         if (is_filling_action(c))
         {
             action_ok = true;
-            fill_number();
+            fill_number(c);
         }
 
         if (c == 'Q' || c == 'q')
