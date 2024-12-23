@@ -33,6 +33,7 @@ void fill_number(int c)
 {	
 	
 	board[cur_r][cur_c]=c-48;
+	
 	return ;
     /* TODO: Fill a number in to the cell the cursor is now pointing to.
              After fill in the number, check the horizontal line, the
