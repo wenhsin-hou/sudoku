@@ -131,8 +131,7 @@ bool is_done(int i, int j)
 void fill_number(int c)
 {
 	board[cur_r][cur_c]=c-48;
-	check_horizontal();
-    check_vertical();
+	
 	return ;
     /* TODO: Fill a number in to the cell the cursor is now pointing to.
              After fill in the number, check the horizontal line, the
@@ -145,20 +144,28 @@ void move_cursor(char c)
 	if(c == 'W' || c == 'w' ) {
 		cur_r--;
 		if(cur_r>=4 || cur_r<0) cur_r++;
+		if(cur_r==0 && cur_c==2 ||cur_r==1&&cur_c==1||cur_r==2&&cur_c==2||cur_r==3&&cur_c==1)cur_r--;
 	}
     if( c == 'S' || c == 's' ) {
 		cur_r++;
 		if(cur_r>=4 || cur_r<0) cur_r--;
+		if(cur_r==0 && cur_c==2 ||cur_r==1&&cur_c==1||cur_r==2&&cur_c==2||cur_r==3&&cur_c==1)cur_r++;
 	}
     if( c == 'A' || c == 'a' ) {
 		cur_c--;
 		if(cur_r>=4 || cur_r<0) cur_c++;
+		if(cur_r==0 && cur_c==2 ||cur_r==1&&cur_c==1||cur_r==2&&cur_c==2||cur_r==3&&cur_c==1)cur_c--;
 	}
     if( c == 'D' || c == 'd') {
 		cur_c++;
 		if(cur_r>=4 || cur_r<0) cur_c--;
+		if(cur_r==0 && cur_c==2 ||cur_r==1&&cur_c==1||cur_r==2&&cur_c==2||cur_r==3&&cur_c==1)cur_c++;
 	}
 }
+    /* TODO: Move the cursor up, down, to the left or to the right.
+             Remember to check if the cursor is moving out of bound.
+    */
+
     /* TODO: Move the cursor up, down, to the left or to the right.
              Remember to check if the cursor is moving out of bound.
     */
