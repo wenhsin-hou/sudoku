@@ -14,24 +14,11 @@ bool editable[4][4];
 
 int cur_r = 0, cur_c = 0;
  
-bool is_invalid(int i, int j)
-{	
-	return false;
+
+
+void check_horizontal(i)
+{
 	
-    /* TODO: Check if board[i][j] is in a line that has conflict numbers. */
-    
-}
-
-bool is_done(int i, int j)
-{
-    /* TODO: Check if board[i][j] is in a line that has finished. */
-    return false;
-}
-
-void check_horizontal()
-{
-	 for (int i = 0; i < 4; ++i) 
-    {
         bool has_duplicate = false;
         bool is_complete = true;
         bool seen[5] = {false}; // 用於記錄數字 1~4 是否出現過
@@ -57,32 +44,31 @@ void check_horizontal()
         {
             if (has_duplicate)
             {
-                is_invalid(i,j);
+                
 				 // 標記該橫列為紅色（有重複數字）
             }
             else if (is_complete)
             {
-                is_done(i,j);
+                
 				 // 標記該橫列為綠色（完成且無重複）
             }
             
         }
         
-    }
+    
     /* TODO: Check if a horizontal line has conflict number, or is finished. */
 }
 
-void check_vertical()
+void check_vertical(j)
 {
-	for (int i = 0; i < 4; ++i) 
-    {
+	
         bool has_duplicate = false;
         bool is_complete = true;
         bool seen[5] = {false}; 
 
-        for (int j = 0; j < 4; ++j) // 遍歷橫列中的每個格子
+        for (int i = 0; i < 4; ++i) // 遍歷橫列中的每個格子
         {
-            int num = board[j][i];
+            int num = board[i][j];
 
             if (num == 0)
             {
@@ -99,27 +85,47 @@ void check_vertical()
         }
 
         
-        for (int j = 0; j < 4; ++j)
+        for (int i = 0; i < 4; ++i)
         {
             if (has_duplicate)
             {
-                is_invalid(i,j);
+                
 				 // 標記該橫列為紅色（有重複數字）
             }
             else if (is_complete)
             {
-                is_done(i,j);
+                
 				 // 標記該橫列為綠色（完成且無重複）
             }
             
         }
     /* TODO: Check if a vertical line has conflict number, or is finished. */
-}
+
 }
 
 void check_block()
 {
     /* TODO: Check if a block has conflict number, or is finished. */
+}
+
+bool is_invalid(int i, int j)
+{	
+	check_horizontal(int i);
+	check_vertical(int j);
+	check_block(int i,int j);
+	return false;
+	
+    /* TODO: Check if board[i][j] is in a line that has conflict numbers. */
+    
+}
+
+bool is_done(int i, int j)
+{	
+	check_horizontal(int i);
+	check_vertical(int j);
+	check_block(int i,int j);
+    /* TODO: Check if board[i][j] is in a line that has finished. */
+    return false;
 }
 
 void fill_number(int c)
