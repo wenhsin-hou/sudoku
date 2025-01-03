@@ -13,10 +13,10 @@ int board[4][4] = {
 bool editable[4][4];
 
 int cur_r = 0, cur_c = 0;
- 
+int i,j; 
 
 
-void check_horizontal(i)
+int check_horizontal(int i)
 {
 	
         bool has_duplicate = false;
@@ -44,14 +44,15 @@ void check_horizontal(i)
         {
             if (has_duplicate)
             {
-                
+                return 1;
 				 // 標記該橫列為紅色（有重複數字）
             }
             else if (is_complete)
             {
-                
+                return 2;
 				 // 標記該橫列為綠色（完成且無重複）
             }
+            else return 0;
             
         }
         
@@ -59,7 +60,7 @@ void check_horizontal(i)
     /* TODO: Check if a horizontal line has conflict number, or is finished. */
 }
 
-void check_vertical(j)
+int  check_vertical(int j)
 {
 	
         bool has_duplicate = false;
@@ -89,14 +90,15 @@ void check_vertical(j)
         {
             if (has_duplicate)
             {
-                
+                return 1;
 				 // 標記該橫列為紅色（有重複數字）
             }
             else if (is_complete)
             {
-                
+                return 2;
 				 // 標記該橫列為綠色（完成且無重複）
             }
+            else return 0;
             
         }
     /* TODO: Check if a vertical line has conflict number, or is finished. */
@@ -110,10 +112,9 @@ void check_block()
 
 bool is_invalid(int i, int j)
 {	
-	check_horizontal(int i);
-	check_vertical(int j);
-	check_block(int i,int j);
-	return false;
+	
+	if(check_horizontal(i) ==1 ||check_vertical(j) ==1) return true;
+	else return false;
 	
     /* TODO: Check if board[i][j] is in a line that has conflict numbers. */
     
@@ -121,17 +122,18 @@ bool is_invalid(int i, int j)
 
 bool is_done(int i, int j)
 {	
-	check_horizontal(int i);
-	check_vertical(int j);
-	check_block(int i,int j);
+	if(check_horizontal(i) ==2 ||check_vertical(j) ==2) return true;
+	else return false;
     /* TODO: Check if board[i][j] is in a line that has finished. */
-    return false;
+    
 }
 
 void fill_number(int c)
 {
 	board[cur_r][cur_c]=c-48;
-	
+	//check_horizontal();
+    //check_vertical();
+    //check_block();
 	return ;
     /* TODO: Fill a number in to the cell the cursor is now pointing to.
              After fill in the number, check the horizontal line, the
@@ -165,11 +167,6 @@ void move_cursor(char c)
     /* TODO: Move the cursor up, down, to the left or to the right.
              Remember to check if the cursor is moving out of bound.
     */
-
-    /* TODO: Move the cursor up, down, to the left or to the right.
-             Remember to check if the cursor is moving out of bound.
-    */
-
 
 
 
@@ -235,8 +232,7 @@ void print_board()
             // Set text style based on the state of the cell.
             string style = "";
             
-			check_horizontal();
-			check_vertical();
+			
 			
             // Set style for the cell the cursor pointing to.
             if (cur_r == i && cur_c == j)
@@ -324,3 +320,5 @@ int main()
 
     return 0;
 }
+
+
